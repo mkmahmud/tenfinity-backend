@@ -6,34 +6,32 @@ export interface IOrder {
 
     customerDetails: {
         name: string;
-        email: string;
+        email?: string; // optional
         phone: string;
         address: string;
-        city: string;
-        state?: string;     // optional (sometimes may not have)
-        zipCode?: string;   // optional
     };
 
     items: {
         productId: string;
         name: string;
         price: number;
-        image?: string;     // optional (in case product image missing)
+        image?: string;
         color?: string;
         quantity: number;
     }[];
 
     subtotal: number;
     shipping?: number;
-    discount?: number;
     total: number;
 
-    paymentMethod: "cod" | "online" | string; // allow other types later
+    paymentMethod: "cod" | "online" | string;
     status: "pending" | "processing" | "shipped" | "delivered" | "cancelled" | string;
 
-    notes?: string; // optional field for extra order instructions
+    deliveryArea: "inside" | "outside" | string; // new field
+    size: "M" | "L" | "XL" | "2XL" | string;     // new field
+    couponApplied?: string;                      // new field for coupon code
+
+    notes?: string;
 }
 
-
-
-export type OrdersModel = Model<IOrder>
+export type OrdersModel = Model<IOrder>;

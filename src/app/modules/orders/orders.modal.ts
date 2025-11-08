@@ -3,25 +3,14 @@ import { IOrder, OrdersModel } from "./orders.interface";
 
 const orderSchema = new Schema<IOrder, OrdersModel>(
     {
-        orderId: {
-            type: String,
-            required: true,
-            unique: true,
-        },
-
-        timestamp: {
-            type: String,
-            required: true,
-        },
+        orderId: { type: String, required: true, unique: true },
+        timestamp: { type: String, required: true },
 
         customerDetails: {
             name: { type: String, required: true },
-            email: { type: String, required: true },
+            email: { type: String }, // optional
             phone: { type: String, required: true },
             address: { type: String, required: true },
-            city: { type: String, required: true },
-            state: { type: String },
-            zipCode: { type: String },
         },
 
         items: [
@@ -35,25 +24,9 @@ const orderSchema = new Schema<IOrder, OrdersModel>(
             },
         ],
 
-        subtotal: {
-            type: Number,
-            required: true,
-        },
-
-        shipping: {
-            type: Number,
-            default: 0,
-        },
-
-        discount: {
-            type: Number,
-            default: 0,
-        },
-
-        total: {
-            type: Number,
-            required: true,
-        },
+        subtotal: { type: Number, required: true },
+        shipping: { type: Number, default: 0 },
+        total: { type: Number, required: true },
 
         paymentMethod: {
             type: String,
@@ -69,17 +42,26 @@ const orderSchema = new Schema<IOrder, OrdersModel>(
             default: "pending",
         },
 
-        notes: {
+        deliveryArea: {
             type: String,
+            required: true,
+            enum: ["inside", "outside"],
         },
+
+        size: {
+            type: String,
+            required: true,
+            enum: ["M", "L", "XL", "2XL"],
+        },
+
+        couponApplied: { type: String },
+
+        notes: { type: String },
     },
     {
         timestamps: true,
-        toJSON: {
-            virtuals: true,
-        },
+        toJSON: { virtuals: true },
     }
 );
 
-
-export const Orders = model<IOrder, OrdersModel>('orders', orderSchema)
+export const Orders = model<IOrder, OrdersModel>("orders", orderSchema);
