@@ -14,7 +14,7 @@ async function main() {
   // server close
 
   try {
-    await mongoose.connect(config.SERVER_URL as string)
+    await mongoose.connect("mongodb+srv://tenfinity-db-access:geYQxWT5vAbfizgZ@tenfinity.jkfbbxf.mongodb.net/?appName=tenfinity")
     console.log('database connected')
     server = app.listen(config.PORT, () => {
       console.log(`Example app listening on port ${config.PORT}`)

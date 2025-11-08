@@ -23,6 +23,7 @@ const getOrders = async (): Promise<IOrder[] | null> => {
     try {
         // return most recently placed orders first
         const orders = await Orders.find().sort({ createdAt: -1, _id: -1 })
+
         return orders
     } catch (error) {
         console.error('Error fetching Orders:', error)
