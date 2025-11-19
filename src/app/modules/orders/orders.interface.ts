@@ -9,6 +9,13 @@ export interface IOrder {
         email?: string; // optional
         phone: string;
         address: string;
+        district?: string; // new optional field
+        thana?: string;    // new optional field
+        upjila?: string;   // new optional field
+        pickupPoint?: string; // new optional field
+        handWrittenColor?: string;      // new optional field
+        handWrittenSize?: string;       // new optional field
+
     };
 
     items: {

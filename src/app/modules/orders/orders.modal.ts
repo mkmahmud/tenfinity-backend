@@ -11,6 +11,12 @@ const orderSchema = new Schema<IOrder, OrdersModel>(
             email: { type: String }, // optional
             phone: { type: String, required: true },
             address: { type: String, required: true },
+            district: { type: String }, // new optional field
+            thana: { type: String },    // new optional field
+            upjila: { type: String },   // new optional field
+            pickupPoint: { type: String }, // new optional field
+            handWrittenColor: { type: String },      // new optional field
+            handWrittenSize: { type: String },       // new optional field
         },
 
         items: [
